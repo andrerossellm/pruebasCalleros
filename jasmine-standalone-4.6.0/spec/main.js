@@ -1,19 +1,21 @@
-class User {
-	firstName;
-	lastName;
-	middleName;
+describe (`${User.name} Class`, () => { 
+  let model;
 
-	constructor(data = {}){
-		this.firstName = data.firstName;
-		this.lastName = data.lastName || '';
-		this.middleName = data.middleName;
-	}
-}
+  beforeEach(() => {
+    model = new User();
+  })
 
-describe(`${User.name} Class`, () => {
-	it('first name defaults to empty', () => {
-		const data = { firstName: null};
-		const model = new User(data);
-		expect(model.firstName).toBe('');
-	});
+  describe( 'default values', () => {
+    it('first name defaults to empty', () => {
+    expect(model.firstName).toBe('');
+    });
+
+    it('last name defaults to empty', () => {
+    expect(model.lastName).toBe('');
+    });
+
+    it('middle name defaults to empty', () => {
+    expect(model.middleName).toBe('');
+    });
+  });
 });
