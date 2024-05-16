@@ -1,23 +1,35 @@
 describe(`${User.name} Class`, () => {
   let model;
+  let mockUserService;
 
   beforeEach(() => {
-    model = new User();
+    mockUserService = {
+      lastId: null,
+      user: {},
+      getUserById(id) {
+        this.lastId = id;
+
+        return this.user;
+      },
+    };
+    const data = {
+      firstName: "Dylan",
+      middleName: "Christopher",
+      lastName: "Israel",
+      id: 1,
+    };
+    model = new User(data, mockUserService);
   });
 
-  describe("say my name", () => {
-    it("alerts the full name of user", () => {
-      // arange
-      model.firstName = "Dylan";
-      model.lastName = "Israel";
-      spyOn(window, "alert");
+  describe("getMyFullUserData", () => {
+    it("passes id to get user", async () => {
+      //arrange
+      mockUserService.lastId = null;
+      //act
+      await model.getMyFullUserData();
 
-      // act
-      model.sayMyName();
-
-      // assert
-      expect(window.alert).toHaveBeenCalled();
-      expect(window.alert).toHaveBeenCalledWith("Dylan Israel");
+      //assert
+      expect(mockUserService.lastId).toBe(1);
     });
   });
 });
