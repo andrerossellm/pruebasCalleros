@@ -1,4 +1,4 @@
-class Admin {
+class User {
 	firstName;
 	lastName;
 	middleName;
@@ -11,5 +11,9 @@ class Admin {
 }
 
 describe(`${User.name} Class`, () => {
-
+	it('first name defaults to empty', () => {
+		const data = { firstName: null};
+		const model = new User(data);
+		expect(model.firstName).toBe('');
+	});
 });
