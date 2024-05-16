@@ -31,5 +31,15 @@ describe(`${User.name} Class`, () => {
       //assert
       expect(mockUserService.lastId).toBe(1);
     });
+
+    it("gets full user data", async () => {
+      //arrange
+      mockUserService.user = new User({
+        firstName: "Juan",
+        middleName: "Programa",
+        lastName: "Bien :)",
+        id: 2,
+      });
+    });
   });
 });
