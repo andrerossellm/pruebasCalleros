@@ -10,6 +10,6 @@ class User {
 	}
 }
 
-describe('User', () => {
+describe(`${User.name} Class`, () => {
 
 });
